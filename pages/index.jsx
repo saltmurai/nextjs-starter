@@ -1,73 +1,96 @@
 import { Container } from "@mantine/core";
+import AstrologyCard from "../components/AstrologyCard";
+import Header from "../components/Header";
+import {
+  IconZodiacAquarius,
+  IconZodiacAries,
+  IconZodiacCancer,
+  IconZodiacCapricorn,
+  IconZodiacGemini,
+  IconZodiacLeo,
+  IconZodiacLibra,
+  IconZodiacSagittarius,
+  IconZodiacScorpio,
+  IconZodiacTaurus,
+  IconZodiacVirgo,
+} from "@tabler/icons-react";
 
 const starSign = [
   {
-    sign: "Aries",
-    horoscope:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis cumque aut, vero, voluptatem hic maiores provident a dolor repellendus ex sint error cum sapiente eligendi harum, eaque cupiditate sunt omnis!",
+    sign: "aries",
+    icon: <IconZodiacAries />,
   },
   {
-    sign: "Taurus",
-    horoscope:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis cumque aut, vero, voluptatem hic maiores provident a dolor repellendus ex sint error cum sapiente eligendi harum, eaque cupiditate sunt omnis!",
+    sign: "taurus",
+    icon: <IconZodiacTaurus />,
   },
   {
-    sign: "Gemini",
-    horoscope:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis cumque aut, vero, voluptatem hic maiores provident a dolor repellendus ex sint error cum sapiente eligendi harum, eaque cupiditate sunt omnis!",
+    sign: "gemini",
+    icon: <IconZodiacGemini />,
   },
   {
-    sign: "Cancer",
-    horoscope:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis cumque aut, vero, voluptatem hic maiores provident a dolor repellendus ex sint error cum sapiente eligendi harum, eaque cupiditate sunt omnis!",
+    sign: "cancer",
+    icon: <IconZodiacCancer />,
   },
   {
-    sign: "Leo",
-    horoscope:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis cumque aut, vero, voluptatem hic maiores provident a dolor repellendus ex sint error cum sapiente eligendi harum, eaque cupiditate sunt omnis!",
+    sign: "leo",
+    icon: <IconZodiacLeo />,
   },
   {
-    sign: "Virgo",
-    horoscope:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis cumque aut, vero, voluptatem hic maiores provident a dolor repellendus ex sint error cum sapiente eligendi harum, eaque cupiditate sunt omnis!",
+    sign: "virgo",
+    icon: <IconZodiacVirgo />,
   },
   {
-    sign: "Libra",
-    horoscope:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis cumque aut, vero, voluptatem hic maiores provident a dolor repellendus ex sint error cum sapiente eligendi harum, eaque cupiditate sunt omnis!",
+    sign: "libra",
+    icon: <IconZodiacLibra />,
   },
   {
-    sign: "Scropio",
-    horoscope:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis cumque aut, vero, voluptatem hic maiores provident a dolor repellendus ex sint error cum sapiente eligendi harum, eaque cupiditate sunt omnis!",
+    sign: "scorpio",
+    icon: <IconZodiacScorpio />,
   },
   {
-    sign: "Sagittarius",
-    horoscope:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis cumque aut, vero, voluptatem hic maiores provident a dolor repellendus ex sint error cum sapiente eligendi harum, eaque cupiditate sunt omnis!",
+    sign: "sagittarius",
+    icon: <IconZodiacSagittarius />,
   },
   {
-    sign: "Capicorn",
-    horoscope:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis cumque aut, vero, voluptatem hic maiores provident a dolor repellendus ex sint error cum sapiente eligendi harum, eaque cupiditate sunt omnis!",
+    sign: "capricorn",
+    icon: <IconZodiacCapricorn />,
   },
   {
-    sign: "Aquarius",
-    horoscope:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis cumque aut, vero, voluptatem hic maiores provident a dolor repellendus ex sint error cum sapiente eligendi harum, eaque cupiditate sunt omnis!",
+    sign: "aquarius",
+    icon: <IconZodiacAquarius />,
   },
   {
-    sign: "Pisces",
-    horoscope:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis cumque aut, vero, voluptatem hic maiores provident a dolor repellendus ex sint error cum sapiente eligendi harum, eaque cupiditate sunt omnis!",
+    sign: "pisces",
+    icon: <IconZodiacAquarius />,
   },
 ];
 
 export default function IndexPage() {
+  function renderAstrologyCard() {
+    let list = [];
+    starSign.forEach((item) => {
+      list.push(
+        <AstrologyCard
+          key={item.name}
+          sign={item.sign}
+          icon={item.icon}
+          horoscope={item.horoscope}
+        />
+      );
+    });
+    return list;
+  }
+
   return (
     <main className="w-full text-white h-screen bg-black">
       {/* Container */}
-      <div className="w-4/5 p-4 h-full mx-auto"></div>
+      <div className="w-4/5 p-4 h-full mx-auto">
+        <Header />
+        <div className="flex items-center justify-center gap-4 h-auto flex-wrap">
+          {renderAstrologyCard()}
+        </div>
+      </div>
     </main>
   );
 }
