@@ -87,7 +87,7 @@ export default function IndexPage() {
       {/* Container */}
       <div className="w-4/5 p-4 h-full mx-auto">
         <Header />
-        <div className="flex items-center justify-center gap-4 h-auto flex-wrap">
+        <div className="flex items-center mt-6 justify-center gap-4 h-auto flex-wrap">
           {renderAstrologyCard()}
         </div>
       </div>
