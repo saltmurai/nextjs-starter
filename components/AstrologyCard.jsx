@@ -11,6 +11,7 @@ function AstrologyCard({ sign, horoscope, icon }) {
   );
 
   const [opened, { open, close }] = useDisclosure(false);
+
   function handleClick() {
     open();
   }
@@ -22,7 +23,7 @@ function AstrologyCard({ sign, horoscope, icon }) {
       >
         <div className="flex items-center justify-center">{icon}</div>
         <div className="text-center text-xl font-semibold">{sign}</div>
-        {isLoading ? (
+        {isLoading || error ? (
           <LoadingOverlay visible={isLoading}></LoadingOverlay>
         ) : (
           <div className="text-sm mt-4 line-clamp-4">{data.horoscope}</div>
@@ -31,7 +32,7 @@ function AstrologyCard({ sign, horoscope, icon }) {
 
       <Modal opened={opened} onClose={close} title={sign.toUpperCase()}>
         <div className="flex items-center justify-center">{icon}</div>
-        {isLoading ? (
+        {isLoading || error ? (
           <LoadingOverlay visible={isLoading}></LoadingOverlay>
         ) : (
           <div className="text-sm mt-4">{data.horoscope}</div>
