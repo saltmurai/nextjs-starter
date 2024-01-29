@@ -1,4 +1,5 @@
-import { Container } from "@mantine/core";
+import { AppContext } from "../components/AppContext";
+import { useContext } from "react";
 import AstrologyCard from "../components/AstrologyCard";
 import Header from "../components/Header";
 import {
@@ -91,7 +92,13 @@ const starSign = [
 ];
 
 export default function IndexPage() {
+  const date = useContext(AppContext);
+
   function renderAstrologyCard() {
+    if (date) {
+      const sign = getSign();
+      return <AstrologyCard sign={sign.sign} icon={sign.icon} />;
+    }
     let list = [];
     starSign.forEach((item) => {
       list.push(
@@ -106,11 +113,32 @@ export default function IndexPage() {
     return list;
   }
 
+  function getSign() {
+    let sign;
+    if (!date) return "Please enter your birthday";
+
+    starSign.forEach((item) => {
+      if (
+        date.getMonth() + 1 == item.start.split("-")[0] &&
+        date.getDate() >= item.start.split("-")[1]
+      ) {
+        sign = item;
+      }
+      if (
+        date.getMonth() + 1 == item.end.split("-")[0] &&
+        date.getDate() <= item.end.split("-")[1]
+      ) {
+        sign = item;
+      }
+    });
+    return sign;
+  }
+
   return (
     <main className="w-full text-white h-screen bg-black">
-      {/* Container */}
       <div className="w-4/5 p-4 h-full mx-auto">
         <Header />
+        {`Your sign is ${getSign().sign}`}
         <div className="flex items-center mt-6 justify-center gap-4 h-auto flex-wrap">
           {renderAstrologyCard()}
         </div>

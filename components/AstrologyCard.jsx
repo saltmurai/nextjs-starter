@@ -4,7 +4,7 @@ import { useDisclosure } from "@mantine/hooks";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
-function AstrologyCard({ sign, horoscope, icon }) {
+function AstrologyCard({ sign, icon }) {
   const { data, error, isLoading } = useSWR(
     `${process.env.NEXT_PUBLIC_API_URL}/daily/${sign}`,
     fetcher

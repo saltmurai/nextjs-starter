@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AppContext, AppDisptachContext } from "./AppContext";
 
 function Header() {
-  const [date, setDate] = useState(new Date("2000-01-01"));
+  const date = useContext(AppContext);
+  const setDate = useContext(AppDisptachContext);
 
   function handlerDateInput(e) {
     console.log(e.target.value);
@@ -12,7 +14,7 @@ function Header() {
       <div className="w-full flex flex-col items-center gap-4">
         <div className="text-3xl font-semibold">ENTER YOUR BIRTHDAY</div>
         <input
-          value={date.toISOString().split("T")[0]}
+          value={date ? date.toISOString().split("T")[0] : undefined}
           onChange={handlerDateInput}
           type="date"
           className="w-40"
